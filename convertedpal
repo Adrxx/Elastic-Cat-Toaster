@@ -1,199 +1,182 @@
 
 
 
-$color1: rgba(255, 217, 218, 1);
-$color2: rgba(234, 99, 140, 1);
-$color3: rgba(137, 2, 62, 1);
-$color4: rgba(48, 52, 63, 1);
-$color5: rgba(27, 32, 33, 1);
+UIColor(red:255.0/255.0, green:217.0/255.0, blue:218.0/255.0, alpha: 1),
+UIColor(red:234.0/255.0, green:99.0/255.0, blue:140.0/255.0, alpha: 1),
+UIColor(red:137.0/255.0, green:2.0/255.0, blue:62.0/255.0, alpha: 1),
+UIColor(red:48.0/255.0, green:52.0/255.0, blue:63.0/255.0, alpha: 1),
+UIColor(red:27.0/255.0, green:32.0/255.0, blue:33.0/255.0, alpha: 1),
 
 
 
-$color1: rgba(47, 45, 46, 1);
-$color2: rgba(72, 99, 156, 1);
-$color3: rgba(121, 35, 89, 1);
-$color4: rgba(215, 36, 131, 1);
-$color5: rgba(253, 62, 129, 1);
+UIColor(red:47.0/255.0, green:45.0/255.0, blue:46.0/255.0, alpha: 1),
+UIColor(red:72.0/255.0, green:99.0/255.0, blue:156.0/255.0, alpha: 1),
+UIColor(red:121.0/255.0, green:35.0/255.0, blue:89.0/255.0, alpha: 1),
+UIColor(red:215.0/255.0, green:36.0/255.0, blue:131.0/255.0, alpha: 1),
+UIColor(red:253.0/255.0, green:62.0/255.0, blue:129.0/255.0, alpha: 1),
 
 
-$color1: rgba(211, 213, 212, 1);
-$color2: rgba(162, 197, 172, 1);
-$color3: rgba(157, 181, 178, 1);
-$color4: rgba(135, 142, 153, 1);
-$color5: rgba(127, 106, 147, 1);
+UIColor(red:211.0/255.0, green:213.0/255.0, blue:212.0/255.0, alpha: 1),
+UIColor(red:162.0/255.0, green:197.0/255.0, blue:172.0/255.0, alpha: 1),
+UIColor(red:157.0/255.0, green:181.0/255.0, blue:178.0/255.0, alpha: 1),
+UIColor(red:135.0/255.0, green:142.0/255.0, blue:153.0/255.0, alpha: 1),
+UIColor(red:127.0/255.0, green:106.0/255.0, blue:147.0/255.0, alpha: 1),
 
 
-$color1: rgba(45, 49, 66, 1);
-$color2: rgba(79, 93, 117, 1);
-$color3: rgba(191, 192, 192, 1);
-$color4: rgba(255, 255, 255, 1);
-$color5: rgba(239, 131, 84, 1);
+UIColor(red:45.0/255.0, green:49.0/255.0, blue:66.0/255.0, alpha: 1),
+UIColor(red:79.0/255.0, green:93.0/255.0, blue:117.0/255.0, alpha: 1),
+UIColor(red:191.0/255.0, green:192.0/255.0, blue:192.0/255.0, alpha: 1),
+UIColor(red:255.0/255.0, green:255.0/255.0, blue:255.0/255.0, alpha: 1),
+UIColor(red:239.0/255.0, green:131.0/255.0, blue:84.0/255.0, alpha: 1),
 
 
-$color1: rgba(219, 213, 109, 1);
-$color2: rgba(135, 170, 116, 1);
-$color3: rgba(45, 147, 173, 1);
-$color4: rgba(255, 102, 102, 1);
-$color5: rgba(221, 144, 110, 1);
+UIColor(red:219.0/255.0, green:213.0/255.0, blue:109.0/255.0, alpha: 1),
+UIColor(red:135.0/255.0, green:170.0/255.0, blue:116.0/255.0, alpha: 1),
+UIColor(red:45.0/255.0, green:147.0/255.0, blue:173.0/255.0, alpha: 1),
+UIColor(red:255.0/255.0, green:102.0/255.0, blue:102.0/255.0, alpha: 1),
+UIColor(red:221.0/255.0, green:144.0/255.0, blue:110.0/255.0, alpha: 1),
 
 
-$color1: rgba(237, 174, 73, 1);
-$color2: rgba(209, 73, 91, 1);
-$color3: rgba(0, 121, 140, 1);
-$color4: rgba(48, 99, 142, 1);
-$color5: rgba(0, 61, 91, 1);
+UIColor(red:237.0/255.0, green:174.0/255.0, blue:73.0/255.0, alpha: 1),
+UIColor(red:209.0/255.0, green:73.0/255.0, blue:91.0/255.0, alpha: 1),
+UIColor(red:0.0/255.0, green:121.0/255.0, blue:140.0/255.0, alpha: 1),
+UIColor(red:48.0/255.0, green:99.0/255.0, blue:142.0/255.0, alpha: 1),
+UIColor(red:0.0/255.0, green:61.0/255.0, blue:91.0/255.0, alpha: 1),
 
 
-$color1: rgba(35, 25, 66, 1);
-$color2: rgba(94, 84, 142, 1);
-$color3: rgba(159, 134, 192, 1);
-$color4: rgba(190, 149, 196, 1);
-$color5: rgba(224, 177, 203, 1);
+UIColor(red:35.0/255.0, green:25.0/255.0, blue:66.0/255.0, alpha: 1),
+UIColor(red:94.0/255.0, green:84.0/255.0, blue:142.0/255.0, alpha: 1),
+UIColor(red:159.0/255.0, green:134.0/255.0, blue:192.0/255.0, alpha: 1),
+UIColor(red:190.0/255.0, green:149.0/255.0, blue:196.0/255.0, alpha: 1),
+UIColor(red:224.0/255.0, green:177.0/255.0, blue:203.0/255.0, alpha: 1),
 
 
-$color1: rgba(255, 166, 48, 1);
-$color2: rgba(215, 232, 186, 1);
-$color3: rgba(77, 161, 169, 1);
-$color4: rgba(46, 80, 119, 1);
-$color5: rgba(97, 28, 53, 1);
+UIColor(red:255.0/255.0, green:166.0/255.0, blue:48.0/255.0, alpha: 1),
+UIColor(red:215.0/255.0, green:232.0/255.0, blue:186.0/255.0, alpha: 1),
+UIColor(red:77.0/255.0, green:161.0/255.0, blue:169.0/255.0, alpha: 1),
+UIColor(red:46.0/255.0, green:80.0/255.0, blue:119.0/255.0, alpha: 1),
+UIColor(red:97.0/255.0, green:28.0/255.0, blue:53.0/255.0, alpha: 1),
 
 
-$color1: rgba(66, 62, 55, 1);
-$color2: rgba(227, 178, 60, 1);
-$color3: rgba(237, 235, 215, 1);
-$color4: rgba(163, 149, 148, 1);
-$color5: rgba(110, 103, 95, 1);
+UIColor(red:66.0/255.0, green:62.0/255.0, blue:55.0/255.0, alpha: 1),
+UIColor(red:227.0/255.0, green:178.0/255.0, blue:60.0/255.0, alpha: 1),
+UIColor(red:237.0/255.0, green:235.0/255.0, blue:215.0/255.0, alpha: 1),
+UIColor(red:163.0/255.0, green:149.0/255.0, blue:148.0/255.0, alpha: 1),
+UIColor(red:110.0/255.0, green:103.0/255.0, blue:95.0/255.0, alpha: 1),
 
 
-$color1: rgba(171, 216, 178, 1);
-$color2: rgba(110, 175, 169, 1);
-$color3: rgba(67, 98, 130, 1);
-$color4: rgba(41, 56, 89, 1);
-$color5: rgba(40, 40, 79, 1);
+UIColor(red:171.0/255.0, green:216.0/255.0, blue:178.0/255.0, alpha: 1),
+UIColor(red:110.0/255.0, green:175.0/255.0, blue:169.0/255.0, alpha: 1),
+UIColor(red:67.0/255.0, green:98.0/255.0, blue:130.0/255.0, alpha: 1),
+UIColor(red:41.0/255.0, green:56.0/255.0, blue:89.0/255.0, alpha: 1),
+UIColor(red:40.0/255.0, green:40.0/255.0, blue:79.0/255.0, alpha: 1),
 
 
-$color1: rgba(31, 32, 65, 1);
-$color2: rgba(75, 63, 114, 1);
-$color3: rgba(255, 200, 87, 1);
-$color4: rgba(17, 157, 164, 1);
-$color5: rgba(25, 100, 126, 1);
+UIColor(red:31.0/255.0, green:32.0/255.0, blue:65.0/255.0, alpha: 1),
+UIColor(red:75.0/255.0, green:63.0/255.0, blue:114.0/255.0, alpha: 1),
+UIColor(red:255.0/255.0, green:200.0/255.0, blue:87.0/255.0, alpha: 1),
+UIColor(red:17.0/255.0, green:157.0/255.0, blue:164.0/255.0, alpha: 1),
+UIColor(red:25.0/255.0, green:100.0/255.0, blue:126.0/255.0, alpha: 1),
 
 
-$color1: rgba(6, 123, 194, 1);
-$color2: rgba(132, 188, 218, 1);
-$color3: rgba(236, 195, 11, 1);
-$color4: rgba(243, 119, 72, 1);
-$color5: rgba(213, 96, 98, 1);
+UIColor(red:6.0/255.0, green:123.0/255.0, blue:194.0/255.0, alpha: 1),
+UIColor(red:132.0/255.0, green:188.0/255.0, blue:218.0/255.0, alpha: 1),
+UIColor(red:236.0/255.0, green:195.0/255.0, blue:11.0/255.0, alpha: 1),
+UIColor(red:243.0/255.0, green:119.0/255.0, blue:72.0/255.0, alpha: 1),
+UIColor(red:213.0/255.0, green:96.0/255.0, blue:98.0/255.0, alpha: 1),
 
 
-$color1: rgba(254, 95, 85, 1);
-$color2: rgba(17, 75, 95, 1);
-$color3: rgba(2, 128, 144, 1);
-$color4: rgba(228, 253, 225, 1);
-$color5: rgba(69, 105, 144, 1);
+UIColor(red:254.0/255.0, green:95.0/255.0, blue:85.0/255.0, alpha: 1),
+UIColor(red:17.0/255.0, green:75.0/255.0, blue:95.0/255.0, alpha: 1),
+UIColor(red:2.0/255.0, green:128.0/255.0, blue:144.0/255.0, alpha: 1),
+UIColor(red:228.0/255.0, green:253.0/255.0, blue:225.0/255.0, alpha: 1),
+UIColor(red:69.0/255.0, green:105.0/255.0, blue:144.0/255.0, alpha: 1),
 
 
-$color1: rgba(36, 48, 16, 1);
-$color2: rgba(135, 163, 48, 1);
-$color3: rgba(161, 195, 73, 1);
-$color4: rgba(202, 213, 147, 1);
-$color5: rgba(42, 60, 36, 1);
-
-
-$color1: rgba(51, 24, 50, 1);
-$color2: rgba(239, 93, 96, 1);
-$color3: rgba(236, 64, 103, 1);
-$color4: rgba(216, 30, 91, 1);
-$color5: rgba(49, 24, 71, 1);
-
-
-$color1: rgba(241, 143, 1, 1);
-$color2: rgba(10, 34, 57, 1);
-$color3: rgba(236, 64, 103, 1);
-$color4: rgba(4, 139, 168, 1);
-$color5: rgba(248, 51, 60, 1);
+UIColor(red:36.0/255.0, green:48.0/255.0, blue:16.0/255.0, alpha: 1),
+UIColor(red:135.0/255.0, green:163.0/255.0, blue:48.0/255.0, alpha: 1),
+UIColor(red:161.0/255.0, green:195.0/255.0, blue:73.0/255.0, alpha: 1),
+UIColor(red:202.0/255.0, green:213.0/255.0, blue:147.0/255.0, alpha: 1),
+UIColor(red:42.0/255.0, green:60.0/255.0, blue:36.0/255.0, alpha: 1),
 
 
 
-$color1: rgba(9, 12, 8, 1);
-$color2: rgba(71, 64, 86, 1);
-$color3: rgba(117, 112, 131, 1);
-$color4: rgba(138, 149, 165, 1);
-$color5: rgba(185, 198, 174, 1);
+UIColor(red:241.0/255.0, green:143.0/255.0, blue:1.0/255.0, alpha: 1),
+UIColor(red:10.0/255.0, green:34.0/255.0, blue:57.0/255.0, alpha: 1),
+UIColor(red:236.0/255.0, green:64.0/255.0, blue:103.0/255.0, alpha: 1),
+UIColor(red:4.0/255.0, green:139.0/255.0, blue:168.0/255.0, alpha: 1),
+UIColor(red:248.0/255.0, green:51.0/255.0, blue:60.0/255.0, alpha: 1),
 
 
-$color1: rgba(226, 132, 19, 1);
-$color2: rgba(245, 100, 22, 1);
-$color3: rgba(221, 75, 26, 1);
-$color4: rgba(239, 39, 27, 1);
-$color5: rgba(234, 23, 68, 1);
+
+UIColor(red:9.0/255.0, green:12.0/255.0, blue:8.0/255.0, alpha: 1),
+UIColor(red:71.0/255.0, green:64.0/255.0, blue:86.0/255.0, alpha: 1),
+UIColor(red:117.0/255.0, green:112.0/255.0, blue:131.0/255.0, alpha: 1),
+UIColor(red:138.0/255.0, green:149.0/255.0, blue:165.0/255.0, alpha: 1),
+UIColor(red:185.0/255.0, green:198.0/255.0, blue:174.0/255.0, alpha: 1),
 
 
-$color1: rgba(220, 214, 247, 1);
-$color2: rgba(166, 177, 225, 1);
-$color3: rgba(180, 134, 159, 1);
-$color4: rgba(152, 95, 111, 1);
-$color5: rgba(78, 76, 103, 1);
+UIColor(red:226.0/255.0, green:132.0/255.0, blue:19.0/255.0, alpha: 1),
+UIColor(red:245.0/255.0, green:100.0/255.0, blue:22.0/255.0, alpha: 1),
+UIColor(red:221.0/255.0, green:75.0/255.0, blue:26.0/255.0, alpha: 1),
+UIColor(red:239.0/255.0, green:39.0/255.0, blue:27.0/255.0, alpha: 1),
+UIColor(red:234.0/255.0, green:23.0/255.0, blue:68.0/255.0, alpha: 1),
 
 
-$color1: rgba(43, 45, 66, 1);
-$color2: rgba(141, 153, 174, 1);
-$color3: rgba(237, 242, 244, 1);
-$color4: rgba(239, 35, 60, 1);
-$color5: rgba(217, 4, 41, 1);
+UIColor(red:220.0/255.0, green:214.0/255.0, blue:247.0/255.0, alpha: 1),
+UIColor(red:166.0/255.0, green:177.0/255.0, blue:225.0/255.0, alpha: 1),
+UIColor(red:180.0/255.0, green:134.0/255.0, blue:159.0/255.0, alpha: 1),
+UIColor(red:152.0/255.0, green:95.0/255.0, blue:111.0/255.0, alpha: 1),
+UIColor(red:78.0/255.0, green:76.0/255.0, blue:103.0/255.0, alpha: 1),
 
 
-$color1: rgba(101, 222, 241, 1);
-$color2: rgba(168, 220, 209, 1);
-$color3: rgba(220, 226, 200, 1);
-$color4: rgba(249, 105, 0, 1);
-$color5: rgba(241, 127, 41, 1);
+UIColor(red:43.0/255.0, green:45.0/255.0, blue:66.0/255.0, alpha: 1),
+UIColor(red:141.0/255.0, green:153.0/255.0, blue:174.0/255.0, alpha: 1),
+UIColor(red:237.0/255.0, green:242.0/255.0, blue:244.0/255.0, alpha: 1),
+UIColor(red:239.0/255.0, green:35.0/255.0, blue:60.0/255.0, alpha: 1),
+UIColor(red:217.0/255.0, green:4.0/255.0, blue:41.0/255.0, alpha: 1),
 
 
-$color1: rgba(252, 252, 252, 1);
-$color2: rgba(210, 248, 152, 1);
-$color3: rgba(246, 249, 48, 1);
-$color4: rgba(47, 47, 47, 1);
-$color5: rgba(0, 0, 0, 1);
+UIColor(red:101.0/255.0, green:222.0/255.0, blue:241.0/255.0, alpha: 1),
+UIColor(red:168.0/255.0, green:220.0/255.0, blue:209.0/255.0, alpha: 1),
+UIColor(red:220.0/255.0, green:226.0/255.0, blue:200.0/255.0, alpha: 1),
+UIColor(red:249.0/255.0, green:105.0/255.0, blue:0.0/255.0, alpha: 1),
+UIColor(red:241.0/255.0, green:127.0/255.0, blue:41.0/255.0, alpha: 1),
 
 
-$color1: rgba(240, 58, 71, 1);
-$color2: rgba(175, 91, 91, 1);
-$color3: rgba(246, 244, 243, 1);
-$color4: rgba(39, 111, 191, 1);
-$color5: rgba(24, 48, 89, 1);
+UIColor(red:252.0/255.0, green:252.0/255.0, blue:252.0/255.0, alpha: 1),
+UIColor(red:210.0/255.0, green:248.0/255.0, blue:152.0/255.0, alpha: 1),
+UIColor(red:246.0/255.0, green:249.0/255.0, blue:48.0/255.0, alpha: 1),
+UIColor(red:47.0/255.0, green:47.0/255.0, blue:47.0/255.0, alpha: 1),
+UIColor(red:0.0/255.0, green:0.0/255.0, blue:0.0/255.0, alpha: 1),
 
 
-$color1: rgba(204, 215, 197, 1);
-$color2: rgba(239, 210, 203, 1);
-$color3: rgba(199, 162, 124, 1);
-$color4: rgba(214, 87, 128, 1);
-$color5: rgba(238, 148, 128, 1);
 
 
-$color1: rgba(232, 174, 183, 1);
-$color2: rgba(184, 225, 255, 1);
-$color3: rgba(169, 255, 247, 1);
-$color4: rgba(148, 251, 171, 1);
-$color5: rgba(130, 171, 161, 1);
+
+UIColor(red:232.0/255.0, green:174.0/255.0, blue:183.0/255.0, alpha: 1),
+UIColor(red:184.0/255.0, green:225.0/255.0, blue:255.0/255.0, alpha: 1),
+UIColor(red:169.0/255.0, green:255.0/255.0, blue:247.0/255.0, alpha: 1),
+UIColor(red:148.0/255.0, green:251.0/255.0, blue:171.0/255.0, alpha: 1),
+UIColor(red:130.0/255.0, green:171.0/255.0, blue:161.0/255.0, alpha: 1),
 
 
-$color1: rgba(49, 62, 80, 1);
-$color2: rgba(58, 67, 94, 1);
-$color3: rgba(69, 85, 97, 1);
-$color4: rgba(92, 102, 114, 1);
-$color5: rgba(108, 111, 127, 1);
+UIColor(red:49.0/255.0, green:62.0/255.0, blue:80.0/255.0, alpha: 1),
+UIColor(red:58.0/255.0, green:67.0/255.0, blue:94.0/255.0, alpha: 1),
+UIColor(red:69.0/255.0, green:85.0/255.0, blue:97.0/255.0, alpha: 1),
+UIColor(red:92.0/255.0, green:102.0/255.0, blue:114.0/255.0, alpha: 1),
+UIColor(red:108.0/255.0, green:111.0/255.0, blue:127.0/255.0, alpha: 1),
 
 
-$color1: rgba(98, 60, 234, 1);
-$color2: rgba(231, 223, 198, 1);
-$color3: rgba(233, 241, 247, 1);
-$color4: rgba(84, 66, 107, 1);
-$color5: rgba(219, 213, 178, 1);
+UIColor(red:98.0/255.0, green:60.0/255.0, blue:234.0/255.0, alpha: 1),
+UIColor(red:231.0/255.0, green:223.0/255.0, blue:198.0/255.0, alpha: 1),
+UIColor(red:233.0/255.0, green:241.0/255.0, blue:247.0/255.0, alpha: 1),
+UIColor(red:84.0/255.0, green:66.0/255.0, blue:107.0/255.0, alpha: 1),
+UIColor(red:219.0/255.0, green:213.0/255.0, blue:178.0/255.0, alpha: 1),
 
 
-$color1: rgba(175, 43, 191, 1);
-$color2: rgba(161, 78, 191, 1);
-$color3: rgba(108, 145, 191, 1);
-$color4: rgba(95, 176, 183, 1);
-$color5: rgba(91, 200, 175, 1);
+UIColor(red:175.0/255.0, green:43.0/255.0, blue:191.0/255.0, alpha: 1),
+UIColor(red:161.0/255.0, green:78.0/255.0, blue:191.0/255.0, alpha: 1),
+UIColor(red:108.0/255.0, green:145.0/255.0, blue:191.0/255.0, alpha: 1),
+UIColor(red:95.0/255.0, green:176.0/255.0, blue:183.0/255.0, alpha: 1),
+UIColor(red:91.0/255.0, green:200.0/255.0, blue:175.0/255.0, alpha: 1),

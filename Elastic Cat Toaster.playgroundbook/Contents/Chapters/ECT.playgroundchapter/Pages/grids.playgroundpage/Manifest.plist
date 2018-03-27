@@ -5,9 +5,9 @@
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Name</key>
-	<string>Page1</string>
+	<string>Square Room</string>
 	<key>Description</key>
-	<string>Roulettes: a family of mathematically-generated spiral shapes</string>
+	<string>Random art that uses the random grid technique.</string>
 	<key>LiveViewMode</key>
 	<string>VisibleByDefault</string>
 	<key>LiveViewEdgeToEdge</key>
@@ -15,6 +15,6 @@
 	<key>PlaygroundLoggingMode</key>
 	<string>Off</string>
 	<key>PosterReference</key>
-	<string>LiveViewPoster.png</string>
+	<string>piece1.png</string>
 </dict>
 </plist>
