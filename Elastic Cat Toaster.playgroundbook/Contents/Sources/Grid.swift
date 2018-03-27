@@ -12,35 +12,37 @@ import GameplayKit
 public class Grid: ArtScene {
   
   public enum Style {
+    
+    case random
     case flat
     case chaos
     case pixel
     
     func palettes() -> [[UIColor]] {
       return [
-        Constants.Colors.abercrombie,
-        Constants.Colors.aperture,
-        Constants.Colors.eighties,
-        Constants.Colors.emoGirl,
-        Constants.Colors.native,
-        Constants.Colors.zombie,
-        Constants.Colors.violet,
-        Constants.Colors.prism,
-        Constants.Colors.insta,
-        Constants.Colors.olde,
-        Constants.Colors.ocean,
-        Constants.Colors.anguila,
-        Constants.Colors.summer,
-        Constants.Colors.sector,
-        Constants.Colors.insect,
-        Constants.Colors.basic,
-        Constants.Colors.midnight,
-        Constants.Colors.sun,
-        Constants.Colors.moonlight,
-        Constants.Colors.fatal,
-        Constants.Colors.sunset,
-        Constants.Colors.organic,
-        Constants.Colors.impressionist,
+        Colors.abercrombie,
+        Colors.aperture,
+        Colors.eighties,
+        Colors.emoGirl,
+        Colors.native,
+        Colors.zombie,
+        Colors.violet,
+        Colors.prism,
+        Colors.insta,
+        Colors.olde,
+        Colors.ocean,
+        Colors.anguila,
+        Colors.summer,
+        Colors.sector,
+        Colors.insect,
+        Colors.basic,
+        Colors.midnight,
+        Colors.sun,
+        Colors.moonlight,
+        Colors.fatal,
+        Colors.sunset,
+        Colors.organic,
+        Colors.impressionist,
       ]
     }
     
@@ -52,6 +54,8 @@ public class Grid: ArtScene {
         return [#imageLiteral(resourceName: "Square")]
       case .flat:
         return [#imageLiteral(resourceName: "Skewed"),#imageLiteral(resourceName: "Half-Triangle")]
+      default:
+        return []
       }
     }
   }
@@ -69,14 +73,15 @@ public class Grid: ArtScene {
   public var allowFlips: Bool?
   public var allowRandomScale: Bool?
   public var revealAnimationDuration: TimeInterval = 0.4
-
   public var randomScaleFactor: CGFloat = 3.0
   
   let random: Random
   
   public init(seed: String, dropValues: Int, size: CGSize) {
     self.random = Random(seed: seed)
-    self.random.dropValues(count: dropValues)
+    if dropValues > 0 {
+      self.random.dropValues(count: dropValues)
+    }
     super.init(size: size)
   }
   
@@ -92,7 +97,10 @@ public class Grid: ArtScene {
   func drawScene() {
     
     let randomStyle = random.choiceFrom([Style.chaos,Style.flat,Style.pixel])!
-    let _style = self.style ?? randomStyle
+    var _style = self.style ?? randomStyle
+    if self.style == .random {
+      _style = randomStyle
+    }
     
     let randomColorPalette = random.choiceFrom(_style.palettes())!
     let _colorPalette = self.colorPalette ?? randomColorPalette
@@ -113,18 +121,25 @@ public class Grid: ArtScene {
       randomCellDivision = CGFloat(random.nextInt(lowerBound: 2, upperBound: 21, bias: 0.5))
     case .pixel:
       randomCellDivision = CGFloat(random.nextInt(lowerBound: 2, upperBound: 21))
+    default:
+      return
     }
     
-    let cellSize = CGFloat(gcd) / (self.cellDivision ?? randomCellDivision)
+    let cappedCellDivision = max(self.cellDivision ?? randomCellDivision, 1.0)
     
-    self.backgroundColor = self.canvasColor ?? random.choiceFrom(_colorPalette)!
+    let cellSize = CGFloat(gcd) / cappedCellDivision
+    
+    
+    let randomCanvasColor = random.choiceFrom(_colorPalette)!
+    self.backgroundColor = self.canvasColor ?? randomCanvasColor
     
     // Setup grid
     let columnsCount = Int(ceil(self.frame.height/cellSize))
     let rowsCount = Int(ceil(self.frame.width/cellSize))
     let size = CGSize(width: cellSize, height: cellSize)
     
-    let texture = SKTexture(image: self.cellImage ?? random.choiceFrom(_possibleSprites)!)
+    let randomTexture = random.choiceFrom(_possibleSprites)!
+    let texture = SKTexture(image: self.cellImage ?? randomTexture)
     
     var randomPatternPeriod: UInt
     switch _style {
@@ -134,14 +149,16 @@ public class Grid: ArtScene {
       randomPatternPeriod = UInt(random.nextInt(lowerBound: 30, upperBound: 80, bias: 0.5))
     case .pixel:
       randomPatternPeriod = UInt(random.nextInt(lowerBound: 40, upperBound: 120, bias: 0.4))
+    default:
+      return
     }
     
     let allowRandomScale = (random.nextInt(lowerBound: 0, upperBound: 10) > 6)
     let spawnAnimationMoveIn = random.nextBool()
-
+    
     
     let patternRandom = Random(seed: "\(random.nextUniform())", period: self.patternPeriod ?? randomPatternPeriod)
-
+    
     for rows in 0...rowsCount {
       for columns in 0...columnsCount {
         
@@ -166,7 +183,6 @@ public class Grid: ArtScene {
         cell.colorBlendFactor = 1.0
         
         cell.alpha = CGFloat(patternRandom.nextUniform())
-        // TODO: Random scale
         var randomScale = CGFloat(patternRandom.nextUniform()) * self.randomScaleFactor
         if !(self.allowRandomScale ?? allowRandomScale) {
           randomScale = 1.0
@@ -194,11 +210,11 @@ public class Grid: ArtScene {
         
         let finalScaleY = cell.yScale
         let finalScaleX = cell.xScale
-
+        
         let finalAlpha = cell.alpha
         let finalPosition = cell.position
         cell.alpha = 0.0
-
+        
         let moveIn = SKAction.move(to: finalPosition, duration: self.revealAnimationDuration)
         let growIn = SKAction.group([SKAction.scaleY(to: finalScaleY, duration: self.revealAnimationDuration),SKAction.scaleX(to: finalScaleX, duration: self.revealAnimationDuration)])
         
@@ -219,18 +235,18 @@ public class Grid: ArtScene {
         let spawn = SKAction.group([
           fadeIn,
           randomSpawnAnimation,
-        ])
+          ])
         
         let randomSpawnTime = TimeInterval(patternRandom.nextUniform()) * self.revealAnimationDuration
         let appear = SKAction.sequence([SKAction.wait(forDuration: randomSpawnTime),spawn])
-
+        
         cell.run(appear)
         
         self.addChild(cell)
       }
     }
   }
-
+  
   
 }
 
