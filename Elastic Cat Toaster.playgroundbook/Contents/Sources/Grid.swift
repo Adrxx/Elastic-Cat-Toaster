@@ -7,58 +7,8 @@
 //
 
 import SpriteKit
-import GameplayKit
 
 public class Grid: ArtScene {
-  
-  public enum Style {
-    
-    case random
-    case flat
-    case chaos
-    case pixel
-    
-    func palettes() -> [[UIColor]] {
-      return [
-        Colors.abercrombie,
-        Colors.aperture,
-        Colors.eighties,
-        Colors.emoGirl,
-        Colors.native,
-        Colors.zombie,
-        Colors.violet,
-        Colors.prism,
-        Colors.insta,
-        Colors.olde,
-        Colors.ocean,
-        Colors.anguila,
-        Colors.summer,
-        Colors.sector,
-        Colors.insect,
-        Colors.basic,
-        Colors.midnight,
-        Colors.sun,
-        Colors.moonlight,
-        Colors.fatal,
-        Colors.sunset,
-        Colors.organic,
-        Colors.impressionist,
-      ]
-    }
-    
-    func sprites() -> [UIImage] {
-      switch self {
-      case .chaos:
-        return [#imageLiteral(resourceName: "App"),#imageLiteral(resourceName: "Square"),#imageLiteral(resourceName: "Circle"),#imageLiteral(resourceName: "Circle"),#imageLiteral(resourceName: "Hexagon")]
-      case .pixel:
-        return [#imageLiteral(resourceName: "Square")]
-      case .flat:
-        return [#imageLiteral(resourceName: "Skewed"),#imageLiteral(resourceName: "Half-Triangle")]
-      default:
-        return []
-      }
-    }
-  }
   
   public var style: Style?
   public var patternPeriod: UInt?
@@ -75,26 +25,8 @@ public class Grid: ArtScene {
   public var revealAnimationDuration: TimeInterval = 0.4
   public var randomScaleFactor: CGFloat = 3.0
   
-  let random: Random
-  
-  public init(seed: String, dropValues: Int, size: CGSize) {
-    self.random = Random(seed: seed)
-    if dropValues > 0 {
-      self.random.dropValues(count: dropValues)
-    }
-    super.init(size: size)
-  }
-  
-  public required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
-  public override func didMove(to view: SKView) {
-    super.didMove(to: view)
-    self.drawScene()
-  }
-  
-  func drawScene() {
+  override func drawScene() {
+    super.drawScene()
     
     let randomStyle = random.choiceFrom([Style.chaos,Style.flat,Style.pixel])!
     var _style = self.style ?? randomStyle
@@ -116,11 +48,11 @@ public class Grid: ArtScene {
     var randomCellDivision: CGFloat
     switch _style {
     case .chaos:
-      randomCellDivision = CGFloat(random.nextInt(lowerBound: 2, upperBound: 21, bias: 0.9))
+      randomCellDivision = CGFloat(random.nextInt(lowerBound: 4, upperBound: 21, bias: 0.9))
     case .flat:
-      randomCellDivision = CGFloat(random.nextInt(lowerBound: 2, upperBound: 21, bias: 0.5))
+      randomCellDivision = CGFloat(random.nextInt(lowerBound: 4, upperBound: 21, bias: 0.5))
     case .pixel:
-      randomCellDivision = CGFloat(random.nextInt(lowerBound: 2, upperBound: 21))
+      randomCellDivision = CGFloat(random.nextInt(lowerBound: 4, upperBound: 21))
     default:
       return
     }
@@ -153,7 +85,7 @@ public class Grid: ArtScene {
       return
     }
     
-    let allowRandomScale = (random.nextInt(lowerBound: 0, upperBound: 10) > 6)
+    let allowRandomScale = (random.nextInt(lowerBound: 0, upperBound: 10) > 5)
     let spawnAnimationMoveIn = random.nextBool()
     
     
@@ -243,6 +175,56 @@ public class Grid: ArtScene {
         cell.run(appear)
         
         self.addChild(cell)
+      }
+    }
+  }
+  
+  
+  public enum Style {
+    
+    case random
+    case flat
+    case chaos
+    case pixel
+    
+    func palettes() -> [[UIColor]] {
+      return [
+        Colors.abercrombie,
+        Colors.aperture,
+        Colors.eighties,
+        Colors.emoGirl,
+        Colors.native,
+        Colors.zombie,
+        Colors.violet,
+        Colors.prism,
+        Colors.insta,
+        Colors.olde,
+        Colors.ocean,
+        Colors.anguila,
+        Colors.summer,
+        Colors.sector,
+        Colors.insect,
+        Colors.basic,
+        Colors.midnight,
+        Colors.sun,
+        Colors.moonlight,
+        Colors.fatal,
+        Colors.sunset,
+        Colors.organic,
+        Colors.impressionist,
+      ]
+    }
+    
+    func sprites() -> [UIImage] {
+      switch self {
+      case .chaos:
+        return [#imageLiteral(resourceName: "App"),#imageLiteral(resourceName: "Square"),#imageLiteral(resourceName: "Circle"),#imageLiteral(resourceName: "Circle"),#imageLiteral(resourceName: "Hexagon")]
+      case .pixel:
+        return [#imageLiteral(resourceName: "Square")]
+      case .flat:
+        return [#imageLiteral(resourceName: "Skewed"),#imageLiteral(resourceName: "Half-Triangle")]
+      default:
+        return []
       }
     }
   }

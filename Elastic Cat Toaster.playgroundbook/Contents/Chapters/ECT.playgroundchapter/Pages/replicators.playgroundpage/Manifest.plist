@@ -5,9 +5,9 @@
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Name</key>
-	<string>Page2</string>
+	<string>Echo</string>
 	<key>Description</key>
-	<string>Hypocycloids</string>
+	<string>Random art that uses the replicators technique</string>
 	<key>LiveViewMode</key>
 	<string>VisibleByDefault</string>
 	<key>LiveViewEdgeToEdge</key>
@@ -15,6 +15,6 @@
 	<key>PlaygroundLoggingMode</key>
 	<string>Off</string>
 	<key>PosterReference</key>
-	<string>LiveViewPoster.png</string>
+	<string>piece2.png</string>
 </dict>
 </plist>
