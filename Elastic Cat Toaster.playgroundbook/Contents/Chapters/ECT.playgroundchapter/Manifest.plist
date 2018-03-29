@@ -6,12 +6,10 @@
 	<string>ECT</string>
 	<key>Pages</key>
 	<array>
+		<string>intro.cutscenepage</string>
 		<string>grids.playgroundpage</string>
 		<string>replicators.playgroundpage</string>
 		<string>painters.playgroundpage</string>
-		<string>04.playgroundpage</string>
-		<string>05.playgroundpage</string>
-		<string>06.playgroundpage</string>
 	</array>
 </dict>
 </plist>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+    <title>Welcome</title>
+    <style>@charset "UTF-8";
+      
+      .animated {
+        -webkit-animation-duration: 1s;
+        animation-duration: 1s;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+      }
+    
+    .animated.infinite {
+      -webkit-animation-iteration-count: infinite;
+      animation-iteration-count: infinite;
+    }
+    
+    @-webkit-keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      
+      to {
+        opacity: 1;
+      }
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      
+      to {
+        opacity: 1;
+      }
+    }
+    
+    .fadeIn {
+      -webkit-animation-name: fadeIn;
+      animation-name: fadeIn;
+    }
+    
+    @-webkit-keyframes fadeInDown {
+      from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+      }
+      
+      to {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+    }
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+      }
+      
+      to {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+    }
+    
+    .fadeInDown {
+      -webkit-animation-name: fadeInDown;
+      animation-name: fadeInDown;
+    }
+    
+    @-webkit-keyframes fadeInUp {
+      from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+      }
+      
+      to {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+      }
+      
+      to {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+    }
+    
+    .fadeInUp {
+      -webkit-animation-name: fadeInUp;
+      animation-name: fadeInUp;
+    }
+    html {
+      height:100%;
+      font-family: 'Avenir';
+    }
+    body {
+      margin:0;
+      height:100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background-color: rgba(69, 105, 144, 1);
+    }
+    h1 {
+      color: rgba(228, 253, 225, 1);
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 3.7em;
+      animation-delay: 1s;
+    }
+    .line {
+      display: block;
+      width: 80%;
+      height: 2px;
+      background-color: rgba(228, 253, 225, 1);
+      animation-delay: 2s;
+    }
+    p {
+      width: 640px;
+      font-size: 1.4em;
+      color: rgba(228, 253, 225, 0.8);
+      text-align: justify;
+      animation-delay: 2s;
+      line-height: 1.4em;
+    }
+    p.next {
+      animation-delay: 8s;
+    }
+    a {
+      margin-top: 20px;
+      padding: 20px 60px;
+      border-radius: 40px;
+      color: rgba(17, 75, 95, 1);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2em;
+      animation-delay: 11s;
+      background-color: rgba(254, 95, 85, 1);
+    }
+    
+    a:active {
+      color: rgba(254, 95, 85, 1);
+      background-color: rgba(17, 75, 95, 1);
+    }
+    
+      </style>
+    <body>
+      
+      <h1 class="animated fadeInDown">Elastic Cat Toaster</h1>
+      <div class="line animated fadeInUp"></div>
+      <p class="animated fadeInUp">Sorry about the random name, it literally is just a random name.
+      I chose it like that because that's what this playground is all about, randomness.</p>
+      <p class="next animated fadeInUp">Carefully thought randomness can be used to produce beautiful patterns. In this playground, I will show you <strong>three</strong> different pieces of random art. Welcome to the <strong>Random Art Gallery!</strong></p>
+      
+      <a class="animated fadeInUp" href="@next">Enter the gallery</a>
+      
+    </body>
+</html>
+

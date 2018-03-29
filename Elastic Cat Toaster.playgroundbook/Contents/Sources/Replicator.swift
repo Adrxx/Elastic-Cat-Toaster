@@ -18,27 +18,28 @@ public class Replicator: ArtScene {
   public let maxCumulativeScaleRange: CGFloat = 0.16
   public let maxCumulativeRotationRange: CGFloat = 0.08
   public let maxCumulativeAlphaDifference: CGFloat = 0.08
+  public let maxGenerations = 80
+  public let separationAngle = CGFloat.pi/2
+  public let revealAnimationDuration: TimeInterval = 0.4
+  public let randomScaleFactor: CGFloat = 1.7
 
-  public var patternPeriod: UInt?
+  public var patternComplexity: UInt?
   public var cellImage: UIImage?
   public var cellColor: UIColor?
   public var cellScale: CGFloat?
-
+  public var spawnAnimation: SpawnAnimation = .random
+  public var perpetualAnimation: PerpetualAnimation = .random
+  public var perpetualAnimationSpeed: UInt?
   public var canvasColor: UIColor?
   public var allowRandomScale: Bool?
-  public var randomScaleFactor: CGFloat = 1.7
   public var allowRandomSeparation: Bool?
   public var allowRandomRotation: Bool?
-  public var revealAnimationDuration: TimeInterval = 0.4
-
-
-  public let maxGenerations = 80
+  public var allowAlphaDecay: Bool?
+  public var colorPalette: [UIColor]?
   
-  public let separationAngle = CGFloat.pi/2
+  private var replicationSchemas: [ReplicationSchema] = []
   
-  public var replicationSchemas: [ReplicationSchema] = []
-  
-  let colorPalettes =  [
+  private let colorPalettes =  [
     Colors.anguila,
     Colors.summer,
     Colors.sector,
@@ -58,12 +59,13 @@ public class Replicator: ArtScene {
     Colors.native,
     Colors.zombie,
     Colors.violet,
-    Colors.prism,
+    Colors.aperture,
     Colors.insta,
     Colors.olde,
-    Colors.ocean,
-    ]
-  let possibleTextures = [#imageLiteral(resourceName: "App"),#imageLiteral(resourceName: "Square"),#imageLiteral(resourceName: "Circle"),#imageLiteral(resourceName: "Hexagon"),#imageLiteral(resourceName: "Skewed"),#imageLiteral(resourceName: "Half-Triangle"),#imageLiteral(resourceName: "Boom"),#imageLiteral(resourceName: "Triangle")]
+    Colors.ocean
+  ]
+  
+  private let possibleTextures = [#imageLiteral(resourceName: "App"),#imageLiteral(resourceName: "Square"),#imageLiteral(resourceName: "Circle"),#imageLiteral(resourceName: "Hexagon"),#imageLiteral(resourceName: "Skewed"),#imageLiteral(resourceName: "Half-Triangle"),#imageLiteral(resourceName: "Boom"),#imageLiteral(resourceName: "Triangle")]
   
   override func drawScene() {
     super.drawScene()
@@ -74,7 +76,8 @@ public class Replicator: ArtScene {
     let randomTexture = random.choiceFrom(possibleTextures)!
     let texture = SKTexture(image: self.cellImage ?? randomTexture)
     
-    let randomColorPalette = random.choiceFrom(self.colorPalettes)!
+    let colorPalette = random.choiceFrom(self.colorPalettes)!
+    let randomColorPalette = self.colorPalette ?? colorPalette
     
     let randomCanvasColor = random.choiceFrom(randomColorPalette)!
     self.backgroundColor = self.canvasColor ?? randomCanvasColor
@@ -82,13 +85,17 @@ public class Replicator: ArtScene {
     let randomCumulativeScale = (CGFloat(random.nextUniform()) * self.maxCumulativeScaleRange) - self.maxCumulativeScaleRange/2.0
     
     let randomCumulativeRotation = (CGFloat(random.nextUniform()) * self.maxCumulativeRotationRange) - self.maxCumulativeRotationRange/2.0
-
+    
     let allowRandomScale = (random.nextInt(lowerBound: 0, upperBound: 10) > 5)
     let allowRandomSeparation = (random.nextInt(lowerBound: 0, upperBound: 10) > 9)
     let allowRandomRotation = (random.nextInt(lowerBound: 0, upperBound: 10) > 8)
+    let allowAlphaDecay = (random.nextInt(lowerBound: 0, upperBound: 10) > 6)
     
-    let randomSpawnAnimation: SpawnAnimation = random.choiceFrom([.fadeIn,.moveIn,.growIn])!
+    let randomSpawnAnimation: SpawnAnimation = random.choiceFrom([.fadeIn,.growIn])!
+    let randomPerpetualAnimation: PerpetualAnimation = random.choiceFrom([.pulse,.flash,.swing,.lag,.wave,.tornado])!
+    let perpetualAnimationSpeed = CGFloat(random.nextInt(lowerBound: 2, upperBound: 10, bias: 0.0))
 
+    
     let repSchemaLeft = ReplicationSchema { (parameters) -> SKNode in
       let patternRandom = parameters.schemaRandom
       let wrapper = SKNode()
@@ -105,71 +112,88 @@ public class Replicator: ArtScene {
       let scale = self.cellScale ?? randomScale
       cell.xScale = scale
       cell.yScale = scale
-
+      
       var randomRotation = CGFloat(patternRandom.nextUniform()) * CGFloat.pi * 2.0
       if !(self.allowRandomRotation ?? allowRandomRotation) {
         randomRotation = 0.0
       }
       cell.zRotation = randomRotation
-
-      wrapper.position.y = self.baseCellSize
-      if (parameters.generation > 0) {
-        
-        wrapper.xScale = 1.0 + randomCumulativeScale
-        wrapper.yScale = 1.0 + randomCumulativeScale
-        
-        wrapper.alpha = 1.0 - (CGFloat(patternRandom.nextUniform())*self.maxCumulativeAlphaDifference)
-        wrapper.zRotation = randomCumulativeRotation
-        
-        var randomSeparation = CGFloat(patternRandom.nextInt(lowerBound: 8, upperBound: 30, bias: 0.5))
-        if !(self.allowRandomSeparation ?? allowRandomSeparation) {
-          randomSeparation = 10.0
-        }
-        wrapper.position.y = randomSeparation
-
+      
+      wrapper.xScale = 1.0 + randomCumulativeScale
+      wrapper.yScale = 1.0 + randomCumulativeScale
+      
+      let alphaDifference = (CGFloat(patternRandom.nextUniform())*self.maxCumulativeAlphaDifference)
+      if self.allowAlphaDecay ?? allowAlphaDecay {
+        wrapper.alpha = 1.0 - alphaDifference
+      }
+      wrapper.zRotation = randomCumulativeRotation
+      
+      var randomSeparation = CGFloat(patternRandom.nextInt(lowerBound: 8, upperBound: 30, bias: 0.5))
+      if !(self.allowRandomSeparation ?? allowRandomSeparation) {
+        randomSeparation = 10.0
+      }
+      wrapper.position.y = randomSeparation
+      
+      
+      if (parameters.generation == 0) {
+        wrapper.position.y = self.baseCellSize
       }
       
-      
-      //childNode.alpha = 0.99
-      
-      //      childNode.position.y = ((index == 1) ? -180 : 180)
-      //
-      //wrapper.run()
-//
-//      cell.yScale = 0.0
-//      cell.xScale = 0.0
-//      cell.alpha = 0.0
-      
+      let finalAlpha = cell.alpha
       let finalScaleY = cell.yScale
       let finalScaleX = cell.xScale
-      
-      let finalPosition = cell.position
-      
-      let spawn = SKAction.fadeIn(withDuration: self.revealAnimationDuration)
-      let forever = SKAction.repeatForever(SKAction.customAction(withDuration: 1.0, actionBlock: { (node, deltaTime) in
-        //node.zRotation = sin()*0.5
-        node.position.x = sin((deltaTime)*CGFloat.pi*2) * 50.0
-      }))
+      let finalRotation = cell.zRotation
       
       var spawnAction: SKAction
-      
-      switch randomSpawnAnimation {
+      switch (self.spawnAnimation == .random ? randomSpawnAnimation : self.spawnAnimation) {
       case .fadeIn:
-        let finalAlpha = cell.alpha
         cell.alpha = 0.0
         spawnAction = SKAction.fadeAlpha(to: finalAlpha, duration: self.revealAnimationDuration)
+      case .growIn:
+        cell.xScale = 0.01
+        cell.yScale = 0.01
+        spawnAction = SKAction.group([SKAction.scaleY(to: finalScaleY, duration: self.revealAnimationDuration),SKAction.scaleX(to: finalScaleX, duration: self.revealAnimationDuration)])
       default:
-        spawnAction = SKAction.fadeAlpha(to: 0.0, duration: self.revealAnimationDuration)
+        spawnAction = SKAction.fadeAlpha(by: 0.0, duration: 0.0)
       }
-
-      cell.run(SKAction.sequence([SKAction.wait(forDuration: 0.04*Double(parameters.generation)),spawnAction]))
+      
+      
+      // perpetual animations
+      
+      var perpetualAction: SKAction
+      switch (self.perpetualAnimation == .random ? randomPerpetualAnimation : self.perpetualAnimation) {
+      case .wave:
+        perpetualAction = SKAction.customAction(withDuration: TimeInterval(perpetualAnimationSpeed), actionBlock: { (node, deltaTime) in
+          node.position.x = sin((deltaTime/perpetualAnimationSpeed)*CGFloat.pi*2) * 50.0
+        })
+      case .pulse:
+        perpetualAction = SKAction.customAction(withDuration: TimeInterval(perpetualAnimationSpeed), actionBlock: { (node, deltaTime) in
+          let delta = sin((deltaTime/perpetualAnimationSpeed)*CGFloat.pi*2) * 0.3
+          node.xScale = finalScaleX + delta
+          node.yScale = finalScaleY + delta
+        })
+      case .lag:
+        perpetualAction = SKAction.customAction(withDuration: TimeInterval(perpetualAnimationSpeed), actionBlock: { (node, deltaTime) in
+          node.position.y = sin((deltaTime/perpetualAnimationSpeed)*CGFloat.pi*2) * (self.baseCellSize/3.0)
+        })
+      case .flash:
+        perpetualAction = SKAction.customAction(withDuration: TimeInterval(perpetualAnimationSpeed), actionBlock: { (node, deltaTime) in
+          node.alpha = finalAlpha - sin((deltaTime/perpetualAnimationSpeed)*CGFloat.pi)
+        })
+      case .swing:
+        perpetualAction = SKAction.customAction(withDuration: TimeInterval(perpetualAnimationSpeed), actionBlock: { (node, deltaTime) in
+          node.zRotation = finalRotation + sin((deltaTime/perpetualAnimationSpeed)*CGFloat.pi*2)*0.1
+        })
+      case .tornado:
+        perpetualAction = SKAction.rotate(byAngle: 0.5*CGFloat(parameters.generation), duration: TimeInterval(perpetualAnimationSpeed))
+      default:
+        perpetualAction = SKAction.fadeAlpha(by: 0.0, duration: 0.0)
+      }
+      //perpetualAction.timingMode = .easeInEaseOut
+      
+      cell.run(SKAction.sequence([SKAction.wait(forDuration: 0.04*Double(parameters.generation)),spawnAction, SKAction.repeatForever(perpetualAction)]))
       
       wrapper.addChild(cell)
-      
-     // let pulse = SKAction.repeatForever(SKAction.sequence([SKAction.rotate(byAngle: 1, duration: 100)]))
-      //      pulse.timingMode = SKActionTimingMode.easeInEaseOut
-      
-      // wrapper.run(pulse)
       
       return wrapper
       
@@ -186,20 +210,13 @@ public class Replicator: ArtScene {
   
   func recursiveReplicate(replicationSchema: ReplicationSchema, gen: Int, childIndex: Int, resultChild: SKNode, random: Random) {
     
-    
     if gen > self.maxGenerations {
       return
     }
     
     let transformedChild = replicationSchema.replicatorFunction((childIndex, gen, random))
     resultChild.addChild(transformedChild)
-    
-    
-    //let wrapper = SKNode()
-    //wrapper.addChild(transformedChild)
-    
-    
-    //resultChild.run(SKAction.rotate(byAngle: 1, duration: 10.0))
+
     if (replicationSchema.children.isEmpty) {
       self.recursiveReplicate(replicationSchema: replicationSchema, gen: gen + 1, childIndex: childIndex, resultChild: transformedChild, random: random)
     }
@@ -207,42 +224,34 @@ public class Replicator: ArtScene {
       self.recursiveReplicate(replicationSchema: childSchema, gen: gen + 1, childIndex: i, resultChild: transformedChild, random: random)
     }
     
-    //
-    //    self.run(SKAction.sequence([
-    //      SKAction.wait(forDuration: 0.2),
-    //      SKAction.run { [weak self] in
-    //        guard let `self` = self else {
-    //          return
-    //        }
-    //
-    //      }]))
-    
     
   }
   
   
   func replicate() {
     
+    let everything = SKNode()
+    
     let schemasSeed = "\(random.nextUniform())"
     let randomPatternPeriod = UInt(random.nextInt(lowerBound: 20, upperBound: self.maxGenerations, bias: 0.8))
     
-    var first: SKNode!
     var last: SKNode!
-
     
-    var finalpatch = SKNode()
+    
+    let finalpatch = SKNode()
     for (i,sh) in self.replicationSchemas.enumerated() {
       let wrapper = SKNode()
-
+      
       
       wrapper.zRotation = CGFloat( (CGFloat.pi*2.0) / CGFloat(self.replicationSchemas.count) * CGFloat(i))
       
       
-      let patternRandom = Random(seed: schemasSeed, period: self.patternPeriod ?? randomPatternPeriod)
+      let patternRandom = Random(seed: schemasSeed, period: self.patternComplexity ?? randomPatternPeriod)
       
       self.recursiveReplicate(replicationSchema: sh, gen: 0, childIndex: i, resultChild: wrapper, random: patternRandom)
       
-      self.addChild(wrapper)
+      everything.addChild(wrapper)
+      
       if i < self.replicationSchemas.count/2 {
         finalpatch.addChild(wrapper.copy() as! SKNode)
       }
@@ -253,26 +262,32 @@ public class Replicator: ArtScene {
     
     let cropnode = SKCropNode()
     cropnode.addChild(finalpatch)
-    
     cropnode.maskNode = last
+    everything.addChild(cropnode)
+    everything.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat.pi*2, duration: 60.0)))
     
-    self.addChild(cropnode)
-    
-    
+    self.addChild(everything)
   }
   
   
   public enum SpawnAnimation {
-    case moveIn
     case fadeIn
     case growIn
+    case none
+    case random
   }
   
   public enum PerpetualAnimation {
-    //case moveIn
-    //case fadeIn
-    //case growIn
+    case none
+    case random
+    case pulse
+    case lag
+    case wave
+    case flash
+    case swing
+    case tornado
   }
   
   
 }
+

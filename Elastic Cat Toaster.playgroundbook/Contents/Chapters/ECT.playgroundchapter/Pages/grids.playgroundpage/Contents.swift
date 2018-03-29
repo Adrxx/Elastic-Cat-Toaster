@@ -10,20 +10,11 @@ import PlaygroundSupport
 let artView = ArtView(title: "Grid", frame: CGRect(x: 0, y: 0, width: 200, height: 200))
 //#-end-hidden-code
 /*:
- Welcome to **Elastic Cat Toaster**!
- 
- Sorry about the confusing name, it's really just a random name.
- I chose it like that because that's what this playground is all about, randomness.
- Randomness used to generate what I like to call a **Random Art Gallery**.
- 
- **Go ahead, run the code now.**
+ **Go ahead, run the code now. ▶️**
  This generates an art piece variant.
  Now, **swipe left on the art piece.**
  Keep swiping left to generate more variants.
  You can also go back on a variant by swiping to the right.
- 
- This random art piece is called: **Square Room**.
- It lays down instances of `SKSpriteNode` in a `Grid` scene and applies different properties like the size, color and shape to each sprite.
  
  Random art pieces need a **seed** to generate randomness, the same seed will always yield the same art variants.
  
@@ -32,18 +23,22 @@ let artView = ArtView(title: "Grid", frame: CGRect(x: 0, y: 0, width: 200, heigh
 let seed = /*#-editable-code Random seed*/"The iPhone X is top notch!"/*#-end-editable-code*/
 let random = Random(seed: seed)
 /*:
- But that's enough explaining, **let's play!**
+ This art piece is called: **Square Room**.
+ It lays down instances of `SKSpriteNode` in a `Grid` scene and applies different properties like the size, color and shape to each sprite.
 
- The code below has properties you can play with to make the art varients look a certain way.
- Some can be `nil`, if they are left `nil`, they would be randomly determined.
- 
- If you have any doubt about what a property does, tap on it and select 'Help'. Also, use the autocomplete suggestions to guide you.
+ You can play with the properties of the `Grid` class in the code below. Properties left `nil` are randomly determined. If you have any doubt about what a property does, tap on it and select 'Help'. Also, use the autocomplete suggestions to guide you.
+
+ When you are done, go to the next art piece: [Echo](@next).
  */
 artView.regenerate = { (i) -> ArtScene in
-  let grid = Grid(seed: seed, dropValues: i, size: artView.frame.size)
+  
+  //#-code-completion(everything, hide)
+  // Use this value to fast forwart to a certain art variant.
+  let fastForward = /*#-editable-code*/0/*#-end-editable-code*/
+  
+  let grid = Grid(seed: seed, dropValues: i + fastForward, size: artView.frame.size)
 
   // Style
-  //#-code-completion(everything, hide)
   //#-code-completion(identifier, show, chaos, flat, pixel, ., nil)
   grid.style = Grid.Style/*#-editable-code*/.random/*#-end-editable-code*/
   
@@ -53,7 +48,6 @@ artView.regenerate = { (i) -> ArtScene in
   
   // Colors
   grid.colorPalette = Colors/*#-editable-code*/.random/*#-end-editable-code*/
-
   //#-code-completion(everything, hide)
   //#-code-completion(identifier, hide, .)
   //#-code-completion(literal, show, color)
@@ -73,7 +67,7 @@ artView.regenerate = { (i) -> ArtScene in
   
   // Pattern
   //#-code-completion(literal, show, integer)
-  grid.patternPeriod = /*#-editable-code*/nil/*#-end-editable-code*/
+  grid.patternComplexity = /*#-editable-code*/nil/*#-end-editable-code*/
   
   // Number of cell divisions
   //#-code-completion(literal, show, integer)
@@ -84,6 +78,3 @@ artView.regenerate = { (i) -> ArtScene in
 //#-hidden-code
 PlaygroundPage.current.liveView = artView
 //#-end-hidden-code
-/*:
- Now follow me to the next art piece called [Echo](@next)!
- */

@@ -11,7 +11,7 @@ import SpriteKit
 public class Grid: ArtScene {
   
   public var style: Style?
-  public var patternPeriod: UInt?
+  public var patternComplexity: UInt?
   public var cellDivision: CGFloat?
   public var canvasColor: UIColor?
   public var cellImage: UIImage?
@@ -89,7 +89,7 @@ public class Grid: ArtScene {
     let spawnAnimationMoveIn = random.nextBool()
     
     
-    let patternRandom = Random(seed: "\(random.nextUniform())", period: self.patternPeriod ?? randomPatternPeriod)
+    let patternRandom = Random(seed: "\(random.nextUniform())", period: self.patternComplexity ?? randomPatternPeriod)
     
     for rows in 0...rowsCount {
       for columns in 0...columnsCount {
@@ -196,7 +196,6 @@ public class Grid: ArtScene {
         Colors.native,
         Colors.zombie,
         Colors.violet,
-        Colors.prism,
         Colors.insta,
         Colors.olde,
         Colors.ocean,

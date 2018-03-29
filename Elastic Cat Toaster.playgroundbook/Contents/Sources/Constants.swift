@@ -12,13 +12,6 @@ public struct Colors {
   
   public static let random: [UIColor]? = nil
   
-  public static let prism = [
-    UIColor(red:1, green:0.49, blue:0.03, alpha:1), // Amber
-    UIColor(red:0.57, green:0.93, blue:0.01, alpha:1), // Chartreuse
-    UIColor(red:0.05, green:1, blue:0.45, alpha:1), // Guppie green
-    UIColor(red:0.04, green:0.72, blue:0.91, alpha:1), // Cyan
-  ]
-  
   public static let emoGirl = [
     UIColor(red:255.0/255.0, green:217.0/255.0, blue:218.0/255.0, alpha: 1),
     UIColor(red:234.0/255.0, green:99.0/255.0, blue:140.0/255.0, alpha: 1),

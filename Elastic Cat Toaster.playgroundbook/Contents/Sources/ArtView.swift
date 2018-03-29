@@ -10,7 +10,7 @@ import SpriteKit
 
 public class ArtView: SKView, UIGestureRecognizerDelegate {
   
-  let transition = SKTransition.fade(withDuration: 0.8)
+  let transition = SKTransition.crossFade(withDuration: 0.3)
   var title: String
   var index = 0
 
