@@ -1,6 +1,6 @@
 //
 //  Random.swift
-//  RandoTests
+//  Elastic Cat Toaster
 //
 //  Created by Adrián on 3/23/18.
 //  Copyright © 2018 ment. All rights reserved.
@@ -9,6 +9,7 @@
 
 import GameplayKit
 
+/// A helper class that can generate different random values but can also have a predefined `period` the define how fast the generated values will repeat. This is what makes the noticable patterns on the art pieces
 public class Random: GKRandom {
   
   var period: UInt?

@@ -1,6 +1,6 @@
 //
 //  ArtView.swift
-//  RandoTests
+//  Elastic Cat Toaster
 //
 //  Created by Adrián on 3/24/18.
 //  Copyright © 2018 ment. All rights reserved.
@@ -8,23 +8,18 @@
 
 import SpriteKit
 
+/// A view for displaying random art
 public class ArtView: SKView, UIGestureRecognizerDelegate {
   
   let transition = SKTransition.crossFade(withDuration: 0.3)
-  var title: String
+  var title: String = ""
   var index = 0
 
   public var regenerate: ((Int) -> ArtScene)? = nil
   
-  public init(title: String, frame: CGRect) {
+  public convenience init(title: String, frame: CGRect) {
+    self.init(frame: frame)
     self.title = title
-    super.init(frame: frame)
-    self.commonInit()
-  }
-  
-  public required init?(coder decoder: NSCoder) {
-    self.title = "-"
-    super.init(coder: decoder)
     self.commonInit()
   }
   

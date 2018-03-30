@@ -1,9 +1,4 @@
 //#-hidden-code
-//
-//  Contents.swift
-//
-//  Copyright © 2016,2017 Apple Inc. All rights reserved.
-//
 import UIKit
 import PlaygroundSupport
 
@@ -28,7 +23,7 @@ let random = Random(seed: seed)
 
  You can play with the properties of the `Grid` class in the code below. Properties left `nil` are randomly determined. If you have any doubt about what a property does, tap on it and select 'Help'. Also, use the autocomplete suggestions to guide you.
 
- When you are done, go to the next art piece: [Echo](@next).
+ When you are done, go to the other art piece: [Echo](@next).
  */
 artView.regenerate = { (i) -> ArtScene in
   
@@ -57,7 +52,6 @@ artView.regenerate = { (i) -> ArtScene in
   // Positions
   //#-code-completion(identifier, show, true, false)
   grid.allowFlips = /*#-editable-code*/nil/*#-end-editable-code*/
-  grid.allowOffsets = /*#-editable-code*/nil/*#-end-editable-code*/
   
   // Sizes
   //#-code-completion(literal, show, integer)

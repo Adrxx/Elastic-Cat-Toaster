@@ -1,6 +1,6 @@
 //
 //  Grid.swift
-//  RandoTests
+//  Elastic Cat Toaster
 //
 //  Created by Adrián on 3/17/18.
 //  Copyright © 2018 ment. All rights reserved.
@@ -10,17 +10,31 @@ import SpriteKit
 
 public class Grid: ArtScene {
   
+  /// A predifined style for the art piece, for more info about each style, tap help on the `Style` enum
   public var style: Style?
+  
+    /// This number defines how much it takes for the random sequence of genereted by the `Random` class to repeat. A shorter value means a simple pattern, a larger value means a complex pattern.
   public var patternComplexity: UInt?
+  
+  /// This defines how divided the grid will be, a higher value will create more divisions and ìn turn, smaller `SKSpriteNode`s.
   public var cellDivision: CGFloat?
+  /// The color of the background.
   public var canvasColor: UIColor?
+  /// The image used for the shape of every `SKSpriteNode` that appears.
   public var cellImage: UIImage?
+  /// The color used for the shape of every `SKSpriteNode` that appears. If thois property is set, it overrides the `colorPalette` definition.
   public var cellColor: UIColor?
+  /// The scale of of every `SKSpriteNode` that appears.
   public var cellScale: CGFloat?
   public var allowOffsets: Bool? = false
+  
+  /// The color palette that the art piece uses.
   public var colorPalette: [UIColor]?
   public var possibleSprites: [UIImage]?
+  
+  /// If true, random horizontal and vertical axis flips may ocurr on the `SKSpriteNode`s.
   public var allowFlips: Bool?
+  /// If true, each `SKSpriteNode` is calculated with a random scale.
   public var allowRandomScale: Bool?
   public var revealAnimationDuration: TimeInterval = 0.4
   public var randomScaleFactor: CGFloat = 3.0
@@ -180,6 +194,12 @@ public class Grid: ArtScene {
   }
   
   
+  /// A predifined style for each art piece
+  ///
+  /// - random: Random style.
+  /// - flat: A flat style uses mostly triangular shapes that are just flipped on their x and y axes, generally without scaling them.
+  /// - chaos: No rules, anyhting can happen
+  /// - pixel: A style that ressembles a pixelatted screen.
   public enum Style {
     
     case random

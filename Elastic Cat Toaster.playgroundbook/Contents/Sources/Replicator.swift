@@ -1,6 +1,6 @@
 //
 //  Replicator.swift
-//  RandoTests
+//  Elastic Cat Toaster
 //
 //  Created by Adrián on 3/21/18.
 //  Copyright © 2018 ment. All rights reserved.
@@ -9,6 +9,8 @@
 //
 import SpriteKit
 
+
+/// A Replicator uses a collection`ReplicationSchema` to reproduce a series of `SKSpriteNode`'s. Each generation being slightly changed by a transformation function.
 public class Replicator: ArtScene {
   
   public let maxBranches = 12
@@ -23,18 +25,38 @@ public class Replicator: ArtScene {
   public let revealAnimationDuration: TimeInterval = 0.4
   public let randomScaleFactor: CGFloat = 1.7
 
+  /// This number defines how much it takes for the random sequence of genereted by the `Random` class to repeat. A shorter value means a simple pattern, a larger value means a complex pattern.
   public var patternComplexity: UInt?
+  
+  /// The image used for the shape of every `SKSpriteNode` that appears.
   public var cellImage: UIImage?
+  
+  /// The color used for the shape of every `SKSpriteNode` that appears. If thois property is set, it overrides the `colorPalette` definition.
   public var cellColor: UIColor?
+
+  /// The scale of of every `SKSpriteNode` that appears.
   public var cellScale: CGFloat?
+  
+  /// The animation for when a `SKSpriteNode` appears, for more info about the possible options, use help on the `SpawnAnimation` enum.
   public var spawnAnimation: SpawnAnimation = .random
+  /// The animation that loops forever after a `SKSpriteNode` appears. for more info about the possible options, use help on the `PerpetualAnimation` enum.
   public var perpetualAnimation: PerpetualAnimation = .random
   public var perpetualAnimationSpeed: UInt?
+  
+  /// The color of the background.
   public var canvasColor: UIColor?
+  
+  /// If true, each `SKSpriteNode` is calculated with a random scale.
   public var allowRandomScale: Bool?
+  
+  // If true, the distance between each generation of `SKSpriteNode` is randomly calculated.
   public var allowRandomSeparation: Bool?
+  
+  // If true, the rotation of every `SKSpriteNode` is randomly calculated.
   public var allowRandomRotation: Bool?
   public var allowAlphaDecay: Bool?
+  
+  /// The color palette that the art piece uses.
   public var colorPalette: [UIColor]?
   
   private var replicationSchemas: [ReplicationSchema] = []
@@ -67,9 +89,13 @@ public class Replicator: ArtScene {
   
   private let possibleTextures = [#imageLiteral(resourceName: "App"),#imageLiteral(resourceName: "Square"),#imageLiteral(resourceName: "Circle"),#imageLiteral(resourceName: "Hexagon"),#imageLiteral(resourceName: "Skewed"),#imageLiteral(resourceName: "Half-Triangle"),#imageLiteral(resourceName: "Boom"),#imageLiteral(resourceName: "Triangle")]
   
+  override public func sceneDidLoad() {
+    super.sceneDidLoad()
+    self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+  }
+  
   override func drawScene() {
     super.drawScene()
-    self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
     
     let size = CGSize(width: self.baseCellSize, height: self.baseCellSize)
     
@@ -224,7 +250,6 @@ public class Replicator: ArtScene {
       self.recursiveReplicate(replicationSchema: childSchema, gen: gen + 1, childIndex: i, resultChild: transformedChild, random: random)
     }
     
-    
   }
   
   
@@ -270,6 +295,13 @@ public class Replicator: ArtScene {
   }
   
   
+  
+  /// The animation for when a `SKSpriteNode` appears, for more info about the possible options, use help on the `SpawnAnimation` enum.
+  ///
+  /// - fadeIn: Each `SKSpriteNode` fades to its final alpha.
+  /// - growIn: Each `SKSpriteNode` grows to its final scale.
+  /// - none: No animation.
+  /// - random: Randomly selected animation.
   public enum SpawnAnimation {
     case fadeIn
     case growIn
@@ -277,6 +309,16 @@ public class Replicator: ArtScene {
     case random
   }
   
+  /// The animation that loops forever after a `SKSpriteNode` appears. for more info about the possible options, use help on the `PerpetualAnimation` enum.
+  ///
+  /// - none: No animation.
+  /// - random: Randomly selected animation.
+  /// - pulse: This animation changes scale of each `SKSpriteNode` back and forth with a slight delay on each generation.
+  /// - lag: This animation changes the separation between each `SKSpriteNode` with a slight delay on each generation.
+  /// - wave: This animation changes the horizontal position of each `SKSpriteNode` with a slight delay on each generation to create a wavy effect.s
+  /// - flash: This animation changes the alpha of each `SKSpriteNode` from 0.0 to 1.0 and back with a slight delay on each generation.
+  /// - swing: This animation changes the rotation of each `SKSpriteNode` back and forth with a slight delay on each generation.
+  /// - tornado: This animation rotates each `SKSpriteNode` faster depending on it's generation, early `SKSpriteNode`s will have slow rotation, and for every generation after that, the rotation speed will grow.
   public enum PerpetualAnimation {
     case none
     case random

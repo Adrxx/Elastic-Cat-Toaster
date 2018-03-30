@@ -1,9 +1,4 @@
 //#-hidden-code
-//
-//  Contents.swift
-//
-//  Copyright © 2016,2017 Apple Inc. All rights reserved.
-//
 import UIKit
 import PlaygroundSupport
 
@@ -16,7 +11,7 @@ let artView = ArtView(title: "Grid", frame: CGRect(x: 0, y: 0, width: 200, heigh
  
  Enough explanation, **Run the code**. Remember you can **swipe left** to see the next variant in the sequence. Oh, and you might want to go fullscreen on this one. 🙌
  
- You can play with the properties below and then join me on the last art piece: [Broken Strings](@next)!
+ You can play with the properties below as well, when you are done, go to the next page: [Thank you](@next)!
  */
 let seed = /*#-editable-code Random seed*/"I always finish my sente..."/*#-end-editable-code*/
 let random = Random(seed: seed)

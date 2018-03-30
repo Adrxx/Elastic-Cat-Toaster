@@ -1,6 +1,6 @@
 //
 //  ArtScene.swift
-//  RandoTests
+//  Elastic Cat Toaster
 //
 //  Created by Adrián on 3/24/18.
 //  Copyright © 2018 ment. All rights reserved.
