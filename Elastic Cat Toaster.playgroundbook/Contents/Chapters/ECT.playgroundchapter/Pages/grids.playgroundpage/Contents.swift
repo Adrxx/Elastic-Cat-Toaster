@@ -2,7 +2,7 @@
 import UIKit
 import PlaygroundSupport
 
-let artView = ArtView(title: "Grid", frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+let artView = ArtView(title: "Square Room", frame: CGRect(x: 0, y: 0, width: 200, height: 200))
 //#-end-hidden-code
 /*:
  **Go ahead, run the code now. ▶️**

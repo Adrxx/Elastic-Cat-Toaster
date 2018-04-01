@@ -2,7 +2,7 @@
 import UIKit
 import PlaygroundSupport
 
-let artView = ArtView(title: "Grid", frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+let artView = ArtView(title: "Echo", frame: CGRect(x: 0, y: 0, width: 200, height: 200))
 //#-end-hidden-code
 /*:
  This one here is called **Echo** and unlike the last piece, this one actually *moves*. Echo uses a technique I call *replicators*.

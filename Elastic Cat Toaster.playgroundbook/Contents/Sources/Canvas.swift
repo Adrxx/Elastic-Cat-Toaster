@@ -11,7 +11,7 @@ import SpriteKit
 /// Cool little experiment for the thank you screen
 public class Canvas: ArtScene {
   
-  public let randomMagnitude: Float = 1.2
+  public let randomMagnitude: Float = 1.5
 
   override public func sceneDidLoad() {
     super.sceneDidLoad()
@@ -48,22 +48,22 @@ public class Canvas: ArtScene {
     self.addChild(oppositePainter)
     
     // The normal field
-    let normalRandom = Random(seed: "WWDC 2018")
+    let normalRandom = Random(seed: "WWDC 2018", period: 4)
     let customField = SKFieldNode.customField {
       (position: vector_float3, velocity: vector_float3, mass: Float, charge: Float, deltaTime: TimeInterval) in
-      let x = normalRandom.nextUniform() * self.randomMagnitude
-      let y = normalRandom.nextUniform() * self.randomMagnitude
+      let x = abs(normalRandom.nextUniform() * self.randomMagnitude)
+      let y = abs(normalRandom.nextUniform() * self.randomMagnitude)
       return vector_float3(x,y,0)
     }
     customField.categoryBitMask = PhysicsCategory.painterField
     self.addChild(customField)
     
     // The opposite field
-    let oppositeRandom = Random(seed: "WWDC 2018")
+    let oppositeRandom = Random(seed: "WWDC 2018", period: 4)
     let oppositeCustomField = SKFieldNode.customField {
       (position: vector_float3, velocity: vector_float3, mass: Float, charge: Float, deltaTime: TimeInterval) in
-      let x = -oppositeRandom.nextUniform() * self.randomMagnitude
-      let y = -oppositeRandom.nextUniform() * self.randomMagnitude
+      let x = -abs(oppositeRandom.nextUniform() * self.randomMagnitude)
+      let y = -abs(oppositeRandom.nextUniform() * self.randomMagnitude)
       return vector_float3(x,y,0)
     }
     oppositeCustomField.categoryBitMask = PhysicsCategory.oppositePainterField
@@ -80,7 +80,7 @@ public class Canvas: ArtScene {
     spring.strength = 1
     spring.falloff = -1
     let particleField = spring
-    particleField.categoryBitMask = PhysicsCategory.commonFields
+    particleField.categoryBitMask = PhysicsCategory.commonFields | PhysicsCategory.painterParticleField
     self.addChild(particleField)
     
   }

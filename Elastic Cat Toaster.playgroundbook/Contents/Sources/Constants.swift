@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// A structure containing all the possible color palettes as static properties.
 public struct Colors {
   
   public static let random: [UIColor]? = nil
@@ -190,6 +191,7 @@ public struct Colors {
   
 }
 
+/// A structure containing all the possible shapes as static properties.
 public struct Images {
   public static let random: UIImage? = nil
   public static let boom = #imageLiteral(resourceName: "Boom")

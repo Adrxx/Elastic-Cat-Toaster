@@ -8,6 +8,7 @@
 
 import SpriteKit
 
+/// A Grid lays down instances of `SKSpriteNode` in a grid and applies different properties like the size, color and shape to each sprite. This properties are randomly applied by the `Random` class.
 public class Grid: ArtScene {
   
   /// A predifined style for the art piece, for more info about each style, tap help on the `Style` enum

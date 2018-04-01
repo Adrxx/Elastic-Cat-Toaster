@@ -32,7 +32,3 @@ extension CGVector {
   }
 }
 
-//extension Float {
-//  var positive
-//}
-

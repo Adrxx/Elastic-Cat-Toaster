@@ -20,7 +20,7 @@ public class Painter: SKEmitterNode {
     self.physicsBody?.restitution = 0.0
     self.physicsBody?.mass = 0.15
     self.physicsBody?.categoryBitMask = PhysicsCategory.painter
-    self.physicsBody?.collisionBitMask = PhysicsCategory.walls
+    self.physicsBody?.collisionBitMask = PhysicsCategory.none
     self.fieldBitMask = PhysicsCategory.painterParticleField
   }
 

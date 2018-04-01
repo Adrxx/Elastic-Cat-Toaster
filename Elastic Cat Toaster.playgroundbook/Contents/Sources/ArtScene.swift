@@ -8,6 +8,7 @@
 
 import SpriteKit
 
+/// The base class for every random art piece
 public class ArtScene: SKScene {
   
   var finalFilter: CIFilter?

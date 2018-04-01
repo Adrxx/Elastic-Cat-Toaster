@@ -10,6 +10,7 @@ import Foundation
 
 /// The categories for the Canvas Scene
 public struct PhysicsCategory {
+  
   public static let none: UInt32 = 0b0
   public static let all: UInt32 = UInt32.max
   public static let painter: UInt32 = (0b1 << 0)
