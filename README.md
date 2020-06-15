@@ -1,7 +1,7 @@
 # Elastic-Cat-Toaster
 WWDC 2018 - A really random playground
 
-[YouTube](https://www.youtube.com/watch?v=Gc8bZLghYFY)
+[See me in action on YouTube](https://www.youtube.com/watch?v=Gc8bZLghYFY)
 
 
 
